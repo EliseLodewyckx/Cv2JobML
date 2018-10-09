@@ -11,7 +11,7 @@ public class Upload {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String upload;
-    private Timestamp timestamp;
+    private Timestamp timestamp = new Timestamp(new Date().getTime());
 
     public Upload() {
     }

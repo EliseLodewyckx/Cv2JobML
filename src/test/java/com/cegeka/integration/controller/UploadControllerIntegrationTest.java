@@ -76,7 +76,7 @@ public class UploadControllerIntegrationTest {
 
     @Test
     public void test_get_upload_by_id() throws Exception {
-        Upload upload = aUpload().withId(1).withUpload("test").build();
+        Upload upload = aUpload().withId(0).withUpload("test").build();
 
         long time = upload.getTimestamp().getTime()/1000*1000;
 
@@ -95,7 +95,7 @@ public class UploadControllerIntegrationTest {
     public void get_all_uploads() throws Exception {
 
         Upload upload = aUpload().withId(1).withUpload("test").build();
-
+        service.addUpload(upload);
 
         long t = upload.getTimestamp().getTime()/1000*1000;
         int id = upload.getId();
@@ -114,7 +114,7 @@ public class UploadControllerIntegrationTest {
         long t = upload.getTimestamp().getTime()/1000*1000;
         service.addUpload(upload);
 
-        int id = upload.getId();
+        int id= service.getAllUpload().get(0).getId()+1;
 
         mockMvc.perform(post(UploadController.BASE_URL + "/add").with(user("admin").roles("ADMIN"))
                 .content(asJson(UploadR.of(id, "", new Timestamp(t))))
