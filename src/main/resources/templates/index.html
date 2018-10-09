@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<head th:replace="common/header :: head"></head>
+</head>
+<body>
+	<div th:replace="common/header :: top-navigation">...</div>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>Home</h1>
+		</div>
+		<p class ="lead" th:text="'Hello!'" />
+		<p class="lead">
+			This is Cv2Job's homepage. Please press Upload if you want to upload your CV. If you are a Admin, use the Admin button. If you'd like some info, press About.
+		</p>
+		
+	</div>
+
+	<div th:replace="common/footer :: footer">...</div>
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<head th:replace="common/header :: head"></head>
+
+
+
+</head>
+<body>
+	<div th:replace="common/header :: top-navigation">...</div>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>Upload CV</h1>
+		</div>
+		<p class ="lead" th:text="'Please upload your CV'" />
+		<form method="POST" th:action="${'/api/upload/upload'}" action="/index" enctype="multipart/form-data">
+			Please select your CV <input type="file" name="file"/>
+
+			<input type="submit" value="Predict"/>
+		</form>
+	</div>
+
+
+
+	<div th:replace="common/footer :: footer">...</div>
+
+</body>
+</html>
