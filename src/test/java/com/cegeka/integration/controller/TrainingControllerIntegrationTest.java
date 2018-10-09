@@ -21,6 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import static com.cegeka.builder.TrainingBuilder.aTraining;
@@ -61,7 +62,6 @@ public class TrainingControllerIntegrationTest {
 
     @Before
     public void setUp() throws Exception {
-        date = new Date(2018,10,4);
         List<Training> trainings = service.getAllTrainings();
         for (Training training : trainings) {
             service.deleteTraining(training.getId());
@@ -77,17 +77,17 @@ public class TrainingControllerIntegrationTest {
         Training training = aTraining()
                 .withId(0)
                 .withMachineVersion("1.0")
-                .withLastTrained(date).build();
+                .build();
 
         service.addTraining(training);
-
+        long t = training.getLastTrained().getTime()/1000*1000;
         int id = training.getId();
 
         mockMvc.perform(get(TrainingController.BASE_URL + "/get/" + id).with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(content().json(asJson(
-                        TrainingR.of(id, "1.0", date )
+                        TrainingR.of(id, "1.0", new Timestamp(t))
                 )));
     }
 
@@ -95,18 +95,17 @@ public class TrainingControllerIntegrationTest {
     public void test_get_all_training() throws Exception {
         Training training = aTraining()
                 .withId(1)
-                .withMachineVersion("1.0")
-                .withLastTrained(date).build();
+                .withMachineVersion("1.0").build();
 
         service.addTraining(training);
-
+        long t = training.getLastTrained().getTime()/1000*1000;
         int id = training.getId();
 
         mockMvc.perform(get(TrainingController.BASE_URL + "/all").with(user("admin").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(content().json(asJson(singletonList(
-                        TrainingR.of(id, "1.0", date )
+                        TrainingR.of(id, "1.0", new Timestamp(t) )
                 ))));
 
     }

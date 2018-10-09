@@ -3,12 +3,15 @@ package com.cegeka.unit;
 import com.cegeka.controllers.TrainingController;
 import com.cegeka.entities.Training;
 import com.cegeka.entities.logging.JMSMessageLogger;
+import com.cegeka.representation.TrainingR;
 import com.cegeka.services.ITrainingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.sql.Timestamp;
 
 import static com.cegeka.builder.TrainingBuilder.aTraining;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,16 +27,17 @@ public class TrainingControllerUnitTest {
     @Mock
     private ITrainingService service;
 
-    @Mock
-    private JMSMessageLogger logger;
-
     @Test
     public void get_training_by_id() {
         Training t = aTraining().withMachineVersion("test").build();
 
         when(service.getTraining(1)).thenReturn(t);
 
-        assertEquals(controller.getTraining(1).getBody().getMachineVersion(), "test");
+        assertEquals("test", controller.getTraining(1).getBody().getMachineVersion());
     }
+
+
+
+
 
 }

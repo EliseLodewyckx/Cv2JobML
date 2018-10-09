@@ -147,6 +147,20 @@ public class LogControllerIntegrationTest {
 
     }
 
+
+    @Test
+    public void test_delete_log() throws Exception {
+        Log log = new Log();
+        service.persist(log);
+        int id = log.getId();
+
+        service.delete(id);
+
+        mockMvc.perform(get(LogController.BASE_URL + "/get/" + id).with(user("admin").roles("ADMIN")))
+                .andExpect(status().isNotFound());
+
+    }
+
     @SuppressWarnings("unchecked")
     protected String asJson(Object o) throws IOException {
         MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();

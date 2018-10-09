@@ -1,7 +1,8 @@
 package com.cegeka.entities;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name="trainings")
@@ -10,12 +11,12 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String machineVersion;
-    private Date lastTrained;
+    private Timestamp lastTrained = new Timestamp(new Date().getTime());
 
     public Training() {
     }
 
-    public Training(int id, String machineVersion, Date lastTrained) {
+    public Training(int id, String machineVersion, Timestamp lastTrained) {
         this.id=id;
         this.machineVersion=machineVersion;
         this.lastTrained=lastTrained;
@@ -37,11 +38,11 @@ public class Training {
         this.machineVersion = machineVersion;
     }
 
-    public Date getLastTrained() {
+    public Timestamp getLastTrained() {
         return lastTrained;
     }
 
-    public void setLastTrained(Date lastTrained) {
+    public void setLastTrained(Timestamp lastTrained) {
         this.lastTrained = lastTrained;
     }
 }

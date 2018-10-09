@@ -109,7 +109,7 @@ public class UploadControllerIntegrationTest {
     }
 
     @Test
-    public void add_log_by_admin() throws Exception {
+    public void add_upload_by_admin() throws Exception {
         Upload upload = new Upload();
         long t = upload.getTimestamp().getTime()/1000*1000;
         service.addUpload(upload);
@@ -129,8 +129,33 @@ public class UploadControllerIntegrationTest {
 
     }
 
+    @Test
+    public void add_upload_by_user() throws Exception {
+        Upload upload = new Upload();
+        long t = upload.getTimestamp().getTime()/1000*1000;
+        int id = upload.getId();
+        mockMvc.perform(post(UploadController.BASE_URL + "/add")
+                .with(user("user").roles("USER"))
+                .content(asJson(UploadR.of(id, "", new Timestamp(t))))
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().is(403));
 
-    @SuppressWarnings("unchecked")
+
+    }
+
+    @Test
+    public void test_delete_upload() throws Exception {
+        Upload upload = new Upload();
+        service.addUpload(upload);
+        int id = upload.getId();
+
+        service.delete(id);
+
+        mockMvc.perform(get(UploadController.BASE_URL + "/get/" + id).with(user("admin").roles("ADMIN")))
+                .andExpect(status().isNotFound());
+
+    }
+        @SuppressWarnings("unchecked")
     protected String asJson(Object o) throws IOException {
         MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
         this.mappingJackson2HttpMessageConverter.write(o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
