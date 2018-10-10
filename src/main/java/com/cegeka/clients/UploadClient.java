@@ -34,7 +34,7 @@ public class UploadClient {
         return status;
     }
 
-    private void writeFile(File file, byte[] bytes) throws IOException {
+    private void writeFile(File file, byte[] bytes) throws IOException, NullPointerException {
         BufferedOutputStream outputStream = null;
         try {
             outputStream = new BufferedOutputStream(

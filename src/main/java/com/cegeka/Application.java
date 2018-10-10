@@ -12,7 +12,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
 
 import javax.jms.Queue;
-import java.io.IOException;
 
 @SpringBootApplication
 @EnableTransactionManagement
@@ -28,7 +27,7 @@ public class Application extends SpringBootServletInitializer {
     }
     @Bean public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipart = new CommonsMultipartResolver();
-        multipart.setMaxUploadSize(3 * 1024 * 1024);
+        multipart.setMaxUploadSize(3145728);
         return multipart;
     } @Bean @Order(0) public MultipartFilter multipartFilter() {
         MultipartFilter multipartFilter = new MultipartFilter(); multipartFilter.setMultipartResolverBeanName("multipartReso‌​lver");
