@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping(TrainingController.BASE_URL)
 public class TrainingController {
-    public static final String BASE_URL="/api/training";
+    public static final String BASE_URL="/api/trainings";
 
     @Autowired
     private ITrainingService service;
