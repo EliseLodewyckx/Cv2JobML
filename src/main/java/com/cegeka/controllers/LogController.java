@@ -22,12 +22,12 @@ public class LogController {
     @Autowired
     JMSMessageLogger jms;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces="application/json;utf-8")
+    @GetMapping(value = "/all", produces="application/json;utf-8")
     public List<Log> getAllLogs() {
         return service.All();
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;utf-8")
+    @GetMapping(value = "/get/{id}", produces = "application/json;utf-8")
     public ResponseEntity<Log> getLog(@PathVariable("id") int id) {
         HttpStatus status = HttpStatus.OK;
 
@@ -40,18 +40,18 @@ public class LogController {
         return new ResponseEntity<>(log, status);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json;utf-8")
+    @PostMapping(value = "/add", consumes = "application/json;utf-8")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addLog(@RequestBody Log log) {
         service.persist(log);
     }
 
-    @RequestMapping(value = "/delete/{id)", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/delete/{id)")
     public void deleteLog(@PathVariable("id") int id) {
         service.delete(id);
     }
 
-    @RequestMapping(value="/clear", method = RequestMethod.DELETE)
+    @DeleteMapping(value="/clear")
     public void deleteAllLogs() {
         service.deleteAll();
     }

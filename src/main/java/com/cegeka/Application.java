@@ -22,10 +22,17 @@ public class Application extends SpringBootServletInitializer {
     public Queue jmsLoggerQue() {
         return new ActiveMQQueue("LoggerQueue");
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Run the application
         SpringApplication.run(Application.class, args);
     }
-    @Bean public CommonsMultipartResolver multipartResolver() { CommonsMultipartResolver multipart = new CommonsMultipartResolver(); multipart.setMaxUploadSize(3 * 1024 * 1024); return multipart;} @Bean @Order(0) public MultipartFilter multipartFilter() { MultipartFilter multipartFilter = new MultipartFilter(); multipartFilter.setMultipartResolverBeanName("multipartReso‌​lver"); return multipartFilter; }
+    @Bean public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipart = new CommonsMultipartResolver();
+        multipart.setMaxUploadSize(3 * 1024 * 1024);
+        return multipart;
+    } @Bean @Order(0) public MultipartFilter multipartFilter() {
+        MultipartFilter multipartFilter = new MultipartFilter(); multipartFilter.setMultipartResolverBeanName("multipartReso‌​lver");
+        return multipartFilter;
+    }
 
 }

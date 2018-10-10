@@ -35,11 +35,18 @@ public class UploadClient {
     }
 
     private void writeFile(File file, byte[] bytes) throws IOException {
+        BufferedOutputStream outputStream = null;
+        try {
+            outputStream = new BufferedOutputStream(
+                    new FileOutputStream(file));
+            outputStream.write(bytes);
 
-        BufferedOutputStream outputStream = new BufferedOutputStream(
-                new FileOutputStream(file));
-        outputStream.write(bytes);
-        outputStream.close();
+        } catch (Exception ex) {
+
+        } finally {
+            outputStream.close();
+        }
+
     }
 
     public boolean doesFileExist(File file) {

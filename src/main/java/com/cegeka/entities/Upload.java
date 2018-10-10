@@ -10,7 +10,7 @@ public class Upload {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String upload;
+    private String uploadPath;
     private Timestamp timestamp = new Timestamp(new Date().getTime());
 
     public Upload() {
@@ -18,7 +18,7 @@ public class Upload {
 
     public Upload(int id, String upload) {
         this.id=id;
-        this.upload = upload;
+        this.uploadPath = upload;
         this.timestamp = new Timestamp(new Date().getTime());
     }
 
@@ -32,11 +32,11 @@ public class Upload {
     }
 
     public String getUpload() {
-        return upload;
+        return uploadPath;
     }
 
     public void setUpload(String upload) {
-        this.upload = upload;
+        this.uploadPath = upload;
     }
 
     public Timestamp getTimestamp() {

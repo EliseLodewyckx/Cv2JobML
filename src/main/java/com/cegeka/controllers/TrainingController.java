@@ -18,7 +18,7 @@ public class TrainingController {
     @Autowired
     private ITrainingService service;
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;utf-8")
+    @GetMapping(value = "/get/{id}", produces = "application/json;utf-8")
     public ResponseEntity<Training> getTraining(@PathVariable("id") int id) {
         HttpStatus status = HttpStatus.OK;
         Training training = service.getTraining(id);
@@ -27,21 +27,21 @@ public class TrainingController {
             status = HttpStatus.NOT_FOUND;
             return new ResponseEntity<>(status);
         }
-        return new ResponseEntity<Training>(training, status);
+        return new ResponseEntity<>(training, status);
     }
 
-    @RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json;utf-8")
+    @GetMapping(value="/all", produces = "application/json;utf-8")
     public List<Training> getAll() {
         return service.getAllTrainings();
     }
 
-    @RequestMapping(value="/add", method = RequestMethod.POST)
+    @PostMapping(value="/add", consumes = "application/json;utf-8")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addTraining(@RequestBody Training training) {
         service.addTraining(training);
     }
 
-    @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value="/delete/{id}")
 
     public void deleteMessage(@PathVariable("id") int id) {
         service.deleteTraining(id);

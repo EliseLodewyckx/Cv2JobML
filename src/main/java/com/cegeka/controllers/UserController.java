@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private IUserService service;
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;utf-8")
+    @GetMapping(value = "/get/{id}", produces = "application/json;utf-8")
     public ResponseEntity<User> getUser(@PathVariable("id") String id) {
         HttpStatus status = HttpStatus.OK;
 
@@ -29,24 +29,24 @@ public class UserController {
 
         if (user==null) {
             status=HttpStatus.NOT_FOUND;
-            return new ResponseEntity<User>(status);
+            return new ResponseEntity<>(status);
         }
         return new ResponseEntity<>(user, status);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;utf-8")
+    @GetMapping(value = "/all", produces = "application/json;utf-8")
     public List<User> getAllUsers() {
         return service.getAllUsers();
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json;utf-8")
+    @PostMapping(value = "/add", consumes = "application/json;utf-8")
     @ResponseStatus(HttpStatus.CREATED)
     public void addUser(@RequestBody User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         service.addUser(user);
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.GET, produces = "application/json;charset:utf-8")
+    @GetMapping(value="/login", produces = "application/json;charset:utf-8")
     @ResponseBody
     public ResponseEntity<User> validateUser(@RequestParam(value="username") String username, @RequestParam(value = "password") String rawPassword) {
         HttpStatus status = HttpStatus.OK;
@@ -66,16 +66,16 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/delete/{id}")
     public void deleteUser(@PathVariable("id")String id) {
         service.deleteUser(id);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = "application/json;utf-8")
+    @PutMapping(value = "/update", consumes = "application/json;utf-8")
     public void updateUser(@RequestBody User user) {
         service.updateUser(user);
     }
-    @RequestMapping(value="/logout", method = RequestMethod.GET, produces = "application/json;charset:utf-8")
+    @GetMapping(value="/logout", produces = "application/json;charset:utf-8")
     @ResponseBody
     public boolean logoutUser(@RequestParam(value="username") String username) {
         User user = service.getUser(username);

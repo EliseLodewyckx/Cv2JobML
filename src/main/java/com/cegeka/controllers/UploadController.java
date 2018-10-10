@@ -23,13 +23,13 @@ public class UploadController {
     @Autowired
     private UploadClient client;
 
-    @RequestMapping(value="/upload", method = RequestMethod.POST, consumes = "multipart/form-data")
+    @PostMapping(value="/upload", consumes = "multipart/form-data")
     public String uploadSingleFile(@RequestParam(value = "file") MultipartFile file) {
         return client.uploadSingleFile(file);
     }
 
-     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;utf-8")
-    public ResponseEntity<Upload> getUpload(@PathVariable("id") int id) {
+     @GetMapping(value = "/get/{id}", produces = "application/json;utf-8")
+     public ResponseEntity<Upload> getUpload(@PathVariable("id") int id) {
         HttpStatus status = HttpStatus.OK;
         Upload upload = service.getUpload(id);
 
@@ -37,21 +37,21 @@ public class UploadController {
             status = HttpStatus.NOT_FOUND;
             return new ResponseEntity<>(status);
         }
-        return new ResponseEntity<Upload>(upload, status);
+        return new ResponseEntity<>(upload, status);
     }
 
-    @RequestMapping(value="/all", method = RequestMethod.GET, produces = "application/json;utf-8")
+    @GetMapping(value="/all", produces = "application/json;utf-8")
     public List<Upload> getAll() {
         return service.getAllUpload();
     }
 
-    @RequestMapping(value="/add", method = RequestMethod.POST)
+    @PostMapping(value="/add", consumes = "application/json;utf-8")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addUpload(@RequestBody Upload upload) {
         service.addUpload(upload);
     }
 
-    @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value="/delete/{id}")
 
     public void deleteMessage(@PathVariable("id") int id) {
         service.delete(id);
