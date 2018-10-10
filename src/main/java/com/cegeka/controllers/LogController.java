@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(LogController.BASE_URL)
 public class LogController {
     public static final String BASE_URL = "/api/logs";
