@@ -20,14 +20,6 @@ public class UploadController {
     @Autowired
     private IUploadService service;
 
-    @Autowired
-    private UploadClient client;
-
-    @PostMapping(value="/upload", consumes = "multipart/form-data")
-    public String uploadSingleFile(@RequestParam(value = "file") MultipartFile file) {
-        return client.uploadSingleFile(file);
-    }
-
      @GetMapping(value = "/get/{id}", produces = "application/json;utf-8")
      public ResponseEntity<Upload> getUpload(@PathVariable("id") int id) {
         HttpStatus status = HttpStatus.OK;

@@ -62,7 +62,7 @@ public class LogControllerIntegrationTest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()     {
         List<Log> logs = service.All();
 
         for(Log log : logs) {

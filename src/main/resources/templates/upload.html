@@ -16,7 +16,7 @@
 			<h1>Upload CV</h1>
 		</div>
 		<p class ="lead" th:text="'Please upload your CV'" />
-		<form method="POST" th:action="${'/api/upload/upload'}" action="/index" enctype="multipart/form-data">
+		<form method="POST" th:action="${'/uploadcv/upload'}" action="/index" enctype="multipart/form-data">
 			Please select your CV <input type="file" name="file"/>
 
 			<input type="submit" value="Predict"/>
