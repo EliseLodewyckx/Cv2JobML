@@ -8,9 +8,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static org.apache.commons.lang.math.RandomUtils.nextInt;
+
 @Component
 public class UploadClient {
-    private static final String UPLOADED_FOLDER="C:\\cvs\\";
+    public static final String UPLOADED_FOLDER="C:\\cvs\\";
 
     public String uploadSingleFile(MultipartFile file) {
 
@@ -19,7 +21,7 @@ public class UploadClient {
             try {
                 byte[] bytes = file.getBytes();
                 File dir = new File(UPLOADED_FOLDER);
-                if (!doesFileExist(dir))
+                if (!doesFileDirExist(dir))
                     dir.mkdirs();
                 File uploadFile = new File(dir.getAbsolutePath() + File.separator +
                         file.getOriginalFilename());
@@ -49,9 +51,17 @@ public class UploadClient {
 
     }
 
-    public boolean doesFileExist(File file) {
+    public boolean doesFileDirExist(File file) {
         return file.exists();
     }
+
+    public void nextBytes(byte[] bytes) {
+        for (int i = 0; i < bytes.length; )
+            for (int rnd = nextInt(), n = Math.min(bytes.length - i, 4);
+                 n-- > 0; rnd >>= 8)
+                bytes[i++] = (byte)rnd;
+    }
+
 
     public String predictJob() {
         return "";
