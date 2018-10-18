@@ -175,6 +175,11 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.0.2</version>
+        </dependency>
 
     </dependencies>
         <!-- https://mvnrepository.com/artifact/com.spotify/docker-maven-plugin -->

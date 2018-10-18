@@ -16,7 +16,7 @@
         <h1>Retrain Model</h1>
     </div>
     <p class ="lead" th:text="'Retrain the model?'" />
-    <form method="POST" th:action="${'/api/upload/upload'}" action="/index" enctype="multipart/form-data">
+    <form method="GET" th:action="${'/admin/train'}" action="/index" enctype="multipart/form-data">
         <p>If you decide to retrain the model, it will retrain itself and based on the new accuracy it will either accept the new model or revert to the old one.</p>
 
         <input type="submit" value="Re-train model"/>

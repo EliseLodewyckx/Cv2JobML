@@ -18,4 +18,6 @@ public class MainController {
     public String uploadSingleFile(@RequestParam(value = "file") MultipartFile file) {
         return client.uploadSingleFile(file);
     }
+
+
 }
