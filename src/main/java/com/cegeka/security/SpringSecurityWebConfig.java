@@ -22,11 +22,12 @@ public class SpringSecurityWebConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/logs/**").hasRole("ADMIN")
                 .antMatchers("/api/trainings/**").hasRole("ADMIN")
                 .antMatchers("/api/users/**").hasRole("ADMIN")
-                .antMatchers("/api/users/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
-                .formLogin()
+                .formLogin().loginPage("/login")
                 .and()
+                .logout().logoutSuccessUrl("/").and()
                 .httpBasic();
 
     }
@@ -39,4 +40,5 @@ public class SpringSecurityWebConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
+
 }

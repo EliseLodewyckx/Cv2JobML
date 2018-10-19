@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/header :: head"></head>
+</head>
+<body>
+<div th:replace="common/header :: top-navigation">...</div>
+
+<div class="container">
+
+    <table class="table table-bordered table-dark">
+        <thead>
+        <tr>
+            <th> Id </th>
+            <th> Time </th>
+            <th> Message </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${logs.empty}">
+            <td colspan="2"> No Logs Available </td>
+        </tr>
+        <tr th:each="log : ${logs}">
+            <td><span th:text="${log.id}"> Id </span></td>
+            <td><span th:text="${log.time}"> Time </span></td>
+            <td><span th:text="${log.message}"> Message </span></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:replace="common/footer :: footer">...</div>
+
+</body>
+</html>
