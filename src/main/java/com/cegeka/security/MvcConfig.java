@@ -24,6 +24,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         view.addViewController("/contact").setViewName("contact");
         view.addViewController("/upload").setViewName("upload");
         view.addViewController("/admin").setViewName("admin");
+        view.addViewController("/prediction").setViewName("prediction");
+        view.addViewController("/accuracy").setViewName("accuracy");
 
 
 

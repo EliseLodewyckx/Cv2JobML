@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @CrossOrigin
@@ -20,8 +21,11 @@ public class AdminController {
     private PythonApiFetchClient client;
 
     @GetMapping(value = "/train")
-    public ResponseEntity<String> trainModel() {
-        return new ResponseEntity<String>(client.trainModel(), HttpStatus.OK);
+    public ModelAndView trainModelNew() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("accuracy", client.trainModel());
+        model.setViewName("accuracy");
+        return model;
     }
 
 
