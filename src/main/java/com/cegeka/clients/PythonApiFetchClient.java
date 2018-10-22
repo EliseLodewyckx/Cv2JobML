@@ -29,15 +29,18 @@ public class PythonApiFetchClient {
     public String useHttpClient(String urlBase) {
         String content="";
         try {
-            HttpClient httpclient = new DefaultHttpClient();
+            DefaultHttpClient httpclient = new DefaultHttpClient();
             HttpResponse response = httpclient.execute(new HttpGet(urlBase));
             ResponseHandler<String> handler = new BasicResponseHandler();
             content = handler.handleResponse(response);
             httpclient.getConnectionManager().shutdown();
+            httpclient.close();
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+
         }
         return content;
     }
