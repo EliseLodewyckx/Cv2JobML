@@ -24,11 +24,11 @@ public class TrainingControllerUnitTest {
 
     @Test
     public void get_training_by_id() {
-        Training t = aTraining().withMachineVersion("test").build();
+        Training t = aTraining().withAccuracy("test").build();
 
         when(service.getTraining(1)).thenReturn(t);
 
-        assertEquals("test", controller.getTraining(1).getBody().getMachineVersion());
+        assertEquals("test", controller.getTraining(1).getBody().getAccuracy());
     }
 
 

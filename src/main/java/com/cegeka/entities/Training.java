@@ -10,16 +10,20 @@ public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String machineVersion;
+    private String accuracy;
     private Timestamp lastTrained = new Timestamp(new Date().getTime());
 
     public Training() {
     }
 
-    public Training(int id, String machineVersion, Timestamp lastTrained) {
+    public Training(int id, String accuracy, Timestamp lastTrained) {
         this.id=id;
-        this.machineVersion=machineVersion;
+        this.accuracy=accuracy;
         this.lastTrained=lastTrained;
+    }
+
+    public Training(String accuracy) {
+        this.accuracy = accuracy;
     }
 
     public int getId() {
@@ -30,12 +34,12 @@ public class Training {
         this.id = id;
     }
 
-    public String getMachineVersion() {
-        return machineVersion;
+    public String getAccuracy() {
+        return accuracy;
     }
 
-    public void setMachineVersion(String machineVersion) {
-        this.machineVersion = machineVersion;
+    public void setAccuracy(String accuracy) {
+        this.accuracy = accuracy;
     }
 
     public Timestamp getLastTrained() {

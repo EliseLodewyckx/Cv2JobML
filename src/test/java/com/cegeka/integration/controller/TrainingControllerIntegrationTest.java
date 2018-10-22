@@ -76,7 +76,7 @@ public class TrainingControllerIntegrationTest {
 
         Training training = aTraining()
                 .withId(0)
-                .withMachineVersion("1.0")
+                .withAccuracy("1.0")
                 .build();
 
         service.addTraining(training);
@@ -95,7 +95,7 @@ public class TrainingControllerIntegrationTest {
     public void test_get_all_training() throws Exception {
         Training training = aTraining()
                 .withId(1)
-                .withMachineVersion("1.0").build();
+                .withAccuracy("1.0").build();
 
         service.addTraining(training);
         long t = training.getLastTrained().getTime()/1000*1000;

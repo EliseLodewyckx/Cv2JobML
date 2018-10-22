@@ -8,16 +8,16 @@ import java.util.Date;
 
 public class TrainingR {
     private int id;
-    private String machineVersion;
+    private String accuracy;
     private Timestamp lastTrained;
 
-    public static TrainingR of(int id, String machineVersion, Timestamp lastTrained) {return new TrainingR(id, machineVersion, lastTrained);}
+    public static TrainingR of(int id, String accuracy, Timestamp lastTrained) {return new TrainingR(id, accuracy, lastTrained);}
 
     @JsonCreator
-    private TrainingR(@JsonProperty("id") int id, @JsonProperty("machineVersion") String machineVersion, @JsonProperty("lastTrained") Timestamp lastTrained) {
+    private TrainingR(@JsonProperty("id") int id, @JsonProperty("accuracy") String accuracy, @JsonProperty("lastTrained") Timestamp lastTrained) {
         this.id=id;
 
-        this.machineVersion=machineVersion;
+        this.accuracy=accuracy;
         this.lastTrained=lastTrained;
     }
 
@@ -25,8 +25,8 @@ public class TrainingR {
         return id;
     }
 
-    public String getMachineVersion() {
-        return machineVersion;
+    public String getAccuracy() {
+        return accuracy;
     }
 
     public Timestamp getlastTrained() {
@@ -37,7 +37,7 @@ public class TrainingR {
         return "TrainingR{" +
                 "id='" + id + '\'' +
                 ", lastTrained='" + lastTrained + '\'' +
-                ", machineVersion='" + machineVersion + '\'' +
+                ", accuracy='" + accuracy + '\'' +
                 '}';
     }
 }

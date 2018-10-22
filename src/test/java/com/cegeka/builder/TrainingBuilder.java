@@ -8,20 +8,20 @@ import java.sql.Timestamp;
 
 public class TrainingBuilder {
     private int id;
-    private String machineVersion;
+    private String accuracy;
     private Timestamp lastTrained = new Timestamp(new Date().getTime());
 
     public static TrainingBuilder aTraining() { return new TrainingBuilder();}
 
-    public Training build() {return new Training(id, machineVersion, lastTrained);}
+    public Training build() {return new Training(id, accuracy, lastTrained);}
 
     public TrainingBuilder withId(int id) {
         this.id=id;
         return this;
     }
 
-    public TrainingBuilder withMachineVersion(String machineVersion) {
-        this.machineVersion=machineVersion;
+    public TrainingBuilder withAccuracy(String accuracy) {
+        this.accuracy=accuracy;
         return this;
     }
 
