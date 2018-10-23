@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/header :: head"></head>
+</head>
+<body>
+<div th:replace="common/header :: top-navigation">...</div>
+
+<div class="container">
+
+    <table class="table table-bordered table-dark">
+        <thead>
+        <tr>
+            <th> Username </th>
+            <th> Password </th>
+            <th> Email </th>
+            <th> Phone </th>
+            <th> Active </th>
+            <th> Role </th>
+            <th> Options </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.empty}">
+            <td colspan="2"> No Users Available </td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${user.username}"> Username </span></td>
+            <td><span th:text="${user.password}"> Password </span></td>
+            <td><span th:text="${user.email}"> Email </span></td>
+            <td><span th:text="${user.phone}"> Phone </span></td>
+            <td><span th:text="${user.active}"> Active </span></td>
+            <td><span th:text="${user.role}"> Role </span></td>
+            <td><span><span><a th:href="'/admin/deleteUser/'+${user.username}">Delete</a></span> || <span><a th:href="'/admin/changeStatusUser/'+${user.username}">Change status</a></span></span></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:replace="common/footer :: footer">...</div>
+
+</body>
+</html>

@@ -28,7 +28,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         view.addViewController("/accuracy").setViewName("accuracy");
         view.addViewController("/admin/logs").setViewName("admin/logs");
         view.addViewController("/admin/trainings").setViewName("admin/trainings");
+        view.addViewController("/admin/addUser").setViewName("admin/addUser");
+        view.addViewController("/admin/addUserSuccess").setViewName("admin/addUserSuccess");
+        view.addViewController("/admin/manageUsers").setViewName("admin/manageUsers");
         view.addViewController("/login").setViewName("login");
+
 
 
 
@@ -43,6 +47,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
                 .resourceChain(true)
                 .addResolver(new WebJarsResourceResolver());
         registry.addResourceHandler("/META-INF/resources/webjars/");
+
     }
 
 

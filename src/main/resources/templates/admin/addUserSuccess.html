@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/header :: head"></head>
+</head>
+<body>
+<div th:replace="common/header :: top-navigation">...</div>
+
+<div class="card-body">
+    <table class="table table-bordered table-dark">
+        <thead>
+        <tr>
+            <th> Username </th>
+            <th> Password </th>
+            <th> Email </th>
+            <th> Phone number </th>
+            <th> Active </th>
+            <th> Role </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><span  th:text="${user.username}">Username</span></td>
+            <td><span th:text="${user.password}">Password</span></td>
+            <td><span th:text="${user.email}">Email</span></td>
+            <td><span th:text="${user.phone}">Phone number</span></td>
+            <td><span th:text="${user.active}">Active</span></td>
+            <td><span th:text="${user.role}">Role</span></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:replace="common/footer :: footer">...</div>
+
+</body>
+</html>

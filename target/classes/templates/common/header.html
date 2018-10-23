@@ -15,21 +15,14 @@
      <link th:href="@{/static/css/sticky-footer-navbar.css}" rel="stylesheet" media="screen" />
 
      <link th:href="@{/static/css/app.css}" rel="stylesheet" media="screen" />
+
       
 </head>
   <body>
   <nav class="navbar navbar-inverse " th:fragment="top-navigation" sec:authorize="isAnonymous()">
       <div class="container">
           <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">
-                  <img th:src="@{cegeka_0.png}" src="cegeka_0.png" alt="logo not found"/>
-              </a>
+              <a href="/"><img src="/images/cegeka_0.png" th:src="@{/images/cegeka_0.png}" class="image-responsive" style="margin-bottom: -20px; max-width: 120px; max-height: 100px" alt="logo not found"/></a>
           </div>
           <div id="navbar" class="collapse navbar-collapse" th:marginheight="10">
               <ul class="nav navbar-nav">
@@ -37,9 +30,11 @@
                   <li th:class="${actionName == 'upload'} ? 'active' : ''" ><a href="/upload">Upload CV</a></li>
                   <li th:class="${actionName == 'about'} ? 'active' : ''" ><a href="/about">About</a></li>
                   <li th:class="${actionName == 'contact'} ? 'active' : ''" ><a href="/contact">Contact</a></li>
-                  <li th:class="${actionName == 'admin'} ? 'active' : ''" ><a href="/admin">Admin</a></li>
 
 
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li th:class="${actionName == 'admin'} ? 'active' : ''" ><a href="/admin"><strong>Login</strong></a></li>
               </ul>
           </div><!--/.nav-collapse -->
       </div>
@@ -48,25 +43,25 @@
   <nav class="navbar navbar-inverse " th:fragment="top-navigation" sec:authorize="hasRole('ROLE_ADMIN')">
       <div class="container">
           <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="/">
-                  <img th:src="@{cegeka_0.png}" src="cegeka_0.png" alt="logo not found"/>
-              </a>
+              <a href="/"><img src="/images/cegeka_0.png" th:src="@{/images/cegeka_0.png}" class="image-responsive" style="margin-bottom: -10px; max-width: 120px; max-height: 100px" alt="logo not found"/></a>
           </div>
           <div id="navbar" class="collapse navbar-collapse" th:marginheight="10">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav navbar-left">
                   <li th:class="${actionName == 'home'} ? 'active' : ''" ><a href="/admin">Home</a></li>
                   <li th:class="${actionName == 'logs'} ? 'active' : ''" ><a href="/admin/logs">Logs</a></li>
                   <li th:class="${actionName == 'trainings'} ? 'active' : ''" ><a href="/admin/trainings">Trainings</a></li>
 
+                  <li th:class="${actionName == 'createUser'} ? 'active' : ''" ><a href="/admin/addUser">Create Admin</a></li>
+                  <li th:class="${actionName == 'manageUsers'} ? 'active' : ''" ><a href="/admin/manageUsers">Manage Admin</a></li>
               </ul>
-          </div><!--/.nav-collapse -->
+
+              <ul class="nav navbar-nav navbar-right">
+                  <li th:class = "${actionName == 'logout'} ? 'active' : ''"><a href="/logout"><strong>Logout</strong></a> </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+
+              </ul>
+          </div>
       </div>
   </nav>
   </body>

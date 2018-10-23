@@ -5,3 +5,6 @@
 .btn:focus, .btn:hover {
     background-position: 0 -14px;
 }
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
