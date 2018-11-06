@@ -31,6 +31,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         view.addViewController("/admin/addUser").setViewName("admin/addUser");
         view.addViewController("/admin/addUserSuccess").setViewName("admin/addUserSuccess");
         view.addViewController("/admin/manageUsers").setViewName("admin/manageUsers");
+        view.addViewController("/admin/retrain").setViewName("admin/retrain");
         view.addViewController("/login").setViewName("login");
 
 
